@@ -1,3 +1,5 @@
+"use strict";
+
 const phoneInput = document.getElementById("phone");
 const form = document.getElementById("form-container");
 const imageUpload = document.getElementById("image-upload");

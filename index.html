@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form-container" onsubmit="handleSubmit(event)">
+      <div class="form-field">
+        <label for="fullname">Fullname:</label>
+        <input type="text" id="fullname" name="fullname" required />
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-field">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required />
+      </div>
+
+      <div class="form-field">
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday" required />
+      </div>
+
+      <div class="form-field">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+
+      <div class="form-field">
+        <label for="confirm-password">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirm-password"
+          required
+        />
+      </div>
+
+      <div class="image-upload-container">
+        <label id="image-upload-label" for="image-upload">
+          Avatar upload
+        </label>
+        <input type="file" id="image-upload" accept="image/*" required />
+        <img id="image-show" src="" alt="Preview" />
+      </div>
+
+      <div class="form-field button-group">
+        <button id="button-add" type="submit">Add</button>
+        <button id="button-reset" type="button">Reset</button>
+      </div>
+    </form>
+    <div class="preview-container">
+      <div class="info-user">
+        <p>Full Name: <span id="fullname-preview"></span></p>
+        <p>Email: <span id="email-preview"></span></p>
+        <p>Phone: <span id="phone-preview"></span></p>
+        <p>Birthday: <span id="birthday-preview"></span></p>
+      </div>
+      <div class="image-preview-container">
+        <img id="image-preview" src="" alt="Preview" />
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

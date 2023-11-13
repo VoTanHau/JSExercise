@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: space-around;
   padding: 10px;
-  
 }
 
 .city-container {
@@ -21,4 +20,19 @@
 
 .focus {
   background-color: red;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .container {
+    width: 60%;
+    padding: 50px 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
 }

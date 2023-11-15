@@ -12,6 +12,10 @@ const emailInput = document.getElementById("email");
 const birthdayInput = document.getElementById("birthday");
 const imageShow = document.getElementById("image-show");
 const label = document.getElementById("image-upload-label");
+const fullnamePreview = document.getElementById("fullname-preview");
+const emailPreview = document.getElementById("email-preview");
+const phonePreview = document.getElementById("phone-preview");
+const birthdayPreview = document.getElementById("birthday-preview");
 
 document.addEventListener("keydown", function (event) {
   if (event.shiftKey) {
@@ -39,18 +43,22 @@ phoneInput.addEventListener("input", function () {
 passwordInput.addEventListener("input", function () {
   const password = passwordInput.value;
   const confirmPassword = confirmInput.value;
+  const validBeginLetter = !/^[a-zA-Z]/;
+  const validSpecialCha = !/[!@#$%^&*]/;
+  const validNumber = !/\d/;
+  const validCapitalLetter = !/[A-Z]/;
 
   if (password.length < 8 || password.length > 30) {
     passwordInput.setCustomValidity("Mật khẩu phải có từ 8 đến 30 ký tự");
-  } else if (!/^[a-zA-Z]/.test(password)) {
+  } else if (validBeginLetter.test(password)) {
     passwordInput.setCustomValidity("Mật khẩu phải bắt đầu bằng một chữ cái");
-  } else if (!/[!@#$%^&*]/.test(password)) {
+  } else if (validSpecialCha.test(password)) {
     passwordInput.setCustomValidity(
       "Mật khẩu phải chứa ít nhất một ký tự đặc biệt"
     );
-  } else if (!/\d/.test(password)) {
+  } else if (validNumber.test(password)) {
     passwordInput.setCustomValidity("Mật khẩu phải chứa ít nhất một chữ số");
-  } else if (!/[A-Z]/.test(password)) {
+  } else if (validCapitalLetter.test(password)) {
     passwordInput.setCustomValidity(
       "Mật khẩu phải chứa ít nhất một chữ cái viết hoa"
     );
@@ -122,10 +130,10 @@ function handleSubmit(event) {
   const birthday = formatBirthday(birthdayInput.value);
   const image = imageUpload.files[0];
 
-  document.getElementById("fullname-preview").textContent = fullname;
-  document.getElementById("email-preview").textContent = email;
-  document.getElementById("phone-preview").textContent = phone;
-  document.getElementById("birthday-preview").textContent = birthday;
+  fullnamePreview.textContent = fullname;
+  emailPreview.textContent = email;
+  phonePreview.textContent = phone;
+  birthdayPreview.textContent = birthday;
 
   const reader = new FileReader();
   reader.onload = function (e) {
@@ -140,10 +148,10 @@ function handleReset() {
   form.reset();
   label.style.display = "flex";
   imageShow.style.display = "none";
-  document.getElementById("fullname-preview").textContent = "";
-  document.getElementById("email-preview").textContent = "";
-  document.getElementById("phone-preview").textContent = "";
-  document.getElementById("birthday-preview").textContent = "";
+  fullnamePreview.textContent = "";
+  emailPreview.textContent = "";
+  phonePreview.textContent = "";
+  birthdayPreview.textContent = "";
   const imagePreview = document.getElementById("image-preview");
   imagePreview.style.display = "none";
 }

@@ -8,26 +8,8 @@
   </head>
   <body>
     <div class="container">
-      <select id="select-container" onchange="handleChange()">
-        <option disabled selected>Choose one</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="chan">Chẵn</option>
-        <option value="le">Lẻ</option>
-        <option value="reset">Reset</option>
-      </select>
-      <ul class="city-container">
-        <li class="city-name" value="1">1. Hà Nội</li>
-        <li class="city-name" value="2">2. Sài Gòn</li>
-        <li class="city-name" value="3">3. Đà Nẵng</li>
-        <li class="city-name" value="4">4. Huế</li>
-        <li class="city-name" value="5">5. Hải Phòng</li>
-        <li class="city-name" value="6">6. Nha Trang</li>
-      </ul>
+      <select id="select-container" onchange="handleChange()"></select>
+      <ul id="city-container" class="city-container"></ul>
     </div>
     <script src="main.js"></script>
   </body>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th><input id="tick-all" type="checkbox" /></th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="table-tbody"></tbody>  
+      </table>
+      <form class="form-container" onsubmit="handleSubmit(event)">
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input class="form-field-input" type="text" id="name" required />
+        </div>
+        <div class="form-field">
+          <label for="phone">Phone</label>
+          <input class="form-field-input" type="tel" id="phone" required />
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input class="form-field-input" type="email" id="email" required />
+        </div>
+        <div class="form-btn-group">
+          <button id="form-btn-add" class="add" type="submit">Add</button>
+          <button id="form-btn-del" class="delete" type="reset">Delete</button>
+        </div>
+      </form>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>

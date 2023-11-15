@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="chatbox">
+        <div id="screen-left" class="chatbox-screen"></div>
+        <form class="chatbox-form">
+          <div class="chatbox-btn-group">
+            <button class="chatbox-btn-left" type="button" value="bold">
+              Đậm
+            </button>
+            <button class="chatbox-btn-left" type="button" value="italic">
+              Nghiêng
+            </button>
+            <button class="chatbox-btn-left" type="reset" value="reset">
+              Reset
+            </button>
+          </div>
+          <div class="content">
+            <textarea id="input-left" cols="35" rows="6"></textarea>
+            <button id="submit-left" type="submit">SEND</button>
+          </div>
+        </form>
+      </div>
+      <div class="chatbox">
+        <div id="screen-right" class="chatbox-screen"></div>
+        <form class="chatbox-form">
+          <div class="chatbox-btn-group">
+            <button class="chatbox-btn-right" value="bold" type="button">
+              Đậm
+            </button>
+            <button class="chatbox-btn-right" value="italic" type="button">
+              Nghiêng
+            </button>
+            <button class="chatbox-btn-right" value="reset" type="reset">
+              Reset
+            </button>
+          </div>
+          <div class="content">
+            <textarea id="input-right" cols="35" rows="6"></textarea>
+            <button id="submit-right" type="submit">SEND</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>

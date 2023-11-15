@@ -1,3 +1,5 @@
+"use strict";
+
 const inputLeft = document.getElementById("input-left");
 const submitLeft = document.getElementById("submit-left");
 const buttonLeft = document.getElementsByClassName("chatbox-btn-left");

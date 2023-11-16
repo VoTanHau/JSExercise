@@ -116,11 +116,15 @@ function validateForm() {
 }
 
 function displayErrorMessage(inputElement, message) {
-  const errorMessage = document.createElement("p");
-  errorMessage.classList.add("error-message");
-  errorMessage.textContent = message;
-  errorMessage.style.color = "red";
-  inputElement.parentNode.appendChild(errorMessage);
+  const existingErrorMessage =
+    inputElement.parentNode.querySelector(".error-message");
+  if (!existingErrorMessage) {
+    const errorMessage = document.createElement("p");
+    errorMessage.classList.add("error-message");
+    errorMessage.textContent = message;
+    errorMessage.style.color = "red";
+    inputElement.parentNode.appendChild(errorMessage);
+  }
 }
 
 imageUpload.addEventListener("change", function () {

@@ -16,6 +16,8 @@ const fullnamePreview = document.getElementById("fullname-preview");
 const emailPreview = document.getElementById("email-preview");
 const phonePreview = document.getElementById("phone-preview");
 const birthdayPreview = document.getElementById("birthday-preview");
+const imagePreview = document.getElementById("image-preview");
+const inputFields = document.querySelectorAll(".form-field-input input");
 
 document.addEventListener("keydown", function (event) {
   if (event.shiftKey) {
@@ -26,58 +28,100 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-phoneInput.addEventListener("input", function () {
-  const phoneNumber = phoneInput.value;
+function validateEmptyFields() {
+  const errorMessages = document.querySelectorAll(".error-message");
+  errorMessages.forEach((errorMessage) => errorMessage.remove());
+  let isValid = true;
 
-  if (phoneNumber.length !== 10) {
-    phoneInput.setCustomValidity("Số điện thoại phải có đúng 10 chữ số");
-  } else if (isNaN(Number(phoneNumber))) {
-    phoneInput.setCustomValidity("Số điện thoại chỉ bao gồm các chữ số");
-  } else if (phoneNumber[0] !== "0") {
-    phoneInput.setCustomValidity("Số điện thoại phải bắt đầu bằng 0");
-  } else {
-    phoneInput.setCustomValidity("");
+  inputFields.forEach((inputField) => {
+    if (inputField.value.trim() === "") {
+      isValid = false;
+      const fieldName = inputField.getAttribute("name");
+      const errorMessage = `${
+        fieldName?.charAt(0).toUpperCase() + fieldName?.slice(1)
+      } is required`;
+      displayErrorMessage(inputField, errorMessage);
+    }
+  });
+
+  return isValid;
+}
+
+function validateForm() {
+  const errorMessages = document.querySelectorAll(".error-message");
+  errorMessages.forEach((errorMessage) => errorMessage.remove());
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const validBeginLetter = /^[a-zA-Z]/;
+  const validSpecialCha = /[!@#$%^&*]/;
+  const validNumber = /\d/;
+  const validCapitalLetter = /[A-Z]/;
+  let isValid = true;
+
+  validateEmptyFields();
+
+  if (!validEmail.test(emailInput.value)) {
+    isValid = false;
+    displayErrorMessage(emailInput, "Invalid email format");
   }
-});
 
-passwordInput.addEventListener("input", function () {
-  const password = passwordInput.value;
-  const confirmPassword = confirmInput.value;
-  const validBeginLetter = !/^[a-zA-Z]/;
-  const validSpecialCha = !/[!@#$%^&*]/;
-  const validNumber = !/\d/;
-  const validCapitalLetter = !/[A-Z]/;
-
-  if (password.length < 8 || password.length > 30) {
-    passwordInput.setCustomValidity("Mật khẩu phải có từ 8 đến 30 ký tự");
-  } else if (validBeginLetter.test(password)) {
-    passwordInput.setCustomValidity("Mật khẩu phải bắt đầu bằng một chữ cái");
-  } else if (validSpecialCha.test(password)) {
-    passwordInput.setCustomValidity(
-      "Mật khẩu phải chứa ít nhất một ký tự đặc biệt"
+  if (phoneInput.value.length !== 10) {
+    isValid = false;
+    displayErrorMessage(
+      phoneInput,
+      "The phone number must have exactly 10 digits"
     );
-  } else if (validNumber.test(password)) {
-    passwordInput.setCustomValidity("Mật khẩu phải chứa ít nhất một chữ số");
-  } else if (validCapitalLetter.test(password)) {
-    passwordInput.setCustomValidity(
-      "Mật khẩu phải chứa ít nhất một chữ cái viết hoa"
+  } else if (isNaN(Number(phoneInput.value))) {
+    isValid = false;
+    displayErrorMessage(phoneInput, "Phone numbers include only digits");
+  } else if (phoneInput.value[0] !== "0") {
+    isValid = false;
+    displayErrorMessage(phoneInput, "Phone numbers must start with 0");
+  }
+
+  if (passwordInput.value.length < 8 || passwordInput.value.length > 30) {
+    isValid = false;
+    displayErrorMessage(
+      passwordInput,
+      "Password must be between 8 and 30 characters"
     );
-  } else if (password !== confirmPassword) {
-    confirmInput.setCustomValidity("Mật khẩu không khớp");
-    passwordInput.setCustomValidity("");
+  } else if (!validBeginLetter.test(passwordInput.value)) {
+    isValid = false;
+    displayErrorMessage(passwordInput, "Password must start with a letter");
+  } else if (!validSpecialCha.test(passwordInput.value)) {
+    isValid = false;
+    displayErrorMessage(
+      passwordInput,
+      "Password must contain at least one special character"
+    );
+  } else if (!validNumber.test(passwordInput.value)) {
+    isValid = false;
+    displayErrorMessage(
+      passwordInput,
+      "Password must contain at least one digit"
+    );
+  } else if (!validCapitalLetter.test(passwordInput.value)) {
+    isValid = false;
+    displayErrorMessage(
+      passwordInput,
+      "Password must contain at least one uppercase letter"
+    );
   }
-});
 
-confirmInput.addEventListener("input", function () {
-  const password = passwordInput.value;
-  const confirmPassword = confirmInput.value;
-
-  if (password !== confirmPassword) {
-    confirmInput.setCustomValidity("Mật khẩu không khớp");
-  } else {
-    confirmInput.setCustomValidity("");
+  if (confirmInput.value !== passwordInput.value) {
+    isValid = false;
+    displayErrorMessage(confirmInput, "Passwords do not match");
   }
-});
+
+  return isValid;
+}
+
+function displayErrorMessage(inputElement, message) {
+  const errorMessage = document.createElement("p");
+  errorMessage.classList.add("error-message");
+  errorMessage.textContent = message;
+  errorMessage.style.color = "red";
+  inputElement.parentNode.appendChild(errorMessage);
+}
 
 imageUpload.addEventListener("change", function () {
   const file = this.files[0];
@@ -124,24 +168,25 @@ function formatBirthday(birthday) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  const fullname = capitalizeFirstLetters(fullnameInput.value);
-  const email = emailInput.value;
-  const phone = formatPhoneNumber(phoneInput.value);
-  const birthday = formatBirthday(birthdayInput.value);
-  const image = imageUpload.files[0];
+  if (validateForm()) {
+    const fullname = capitalizeFirstLetters(fullnameInput.value);
+    const email = emailInput.value;
+    const phone = formatPhoneNumber(phoneInput.value);
+    const birthday = formatBirthday(birthdayInput.value);
+    const image = imageUpload.files[0];
 
-  fullnamePreview.textContent = fullname;
-  emailPreview.textContent = email;
-  phonePreview.textContent = phone;
-  birthdayPreview.textContent = birthday;
+    fullnamePreview.textContent = fullname;
+    emailPreview.textContent = email;
+    phonePreview.textContent = phone;
+    birthdayPreview.textContent = birthday;
 
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    const imagePreview = document.getElementById("image-preview");
-    imagePreview.style.display = "block";
-    imagePreview.src = e.target.result;
-  };
-  reader.readAsDataURL(image);
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      imagePreview.style.display = "block";
+      imagePreview.src = e.target.result;
+    };
+    reader.readAsDataURL(image);
+  }
 }
 
 function handleReset() {
@@ -152,7 +197,6 @@ function handleReset() {
   emailPreview.textContent = "";
   phonePreview.textContent = "";
   birthdayPreview.textContent = "";
-  const imagePreview = document.getElementById("image-preview");
   imagePreview.style.display = "none";
 }
 

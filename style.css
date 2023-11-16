@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #form-container {
   max-width: 60%;
   margin: 100px auto;
@@ -15,15 +21,16 @@
   width: 15%;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-input[type="password"] {
+.form-field-input {
   width: 80%;
+}
+
+.form-field-input input {
+  width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-bottom: 5px;
 }
 
 .form-field button {
@@ -44,7 +51,7 @@ input[type="submit"]:hover {
   margin-top: 8px;
 }
 
-.image-upload-container {
+#image-upload-container {
   margin: 10px auto;
   border: 1px solid black;
   display: flex;
@@ -55,7 +62,7 @@ input[type="submit"]:hover {
   overflow: hidden;
 }
 
-.image-upload-container label {
+#image-upload-container label {
   cursor: pointer;
   color: black;
   width: 100%;
@@ -65,13 +72,13 @@ input[type="submit"]:hover {
   justify-content: center;
 }
 
-.image-upload-container input {
+#image-upload-container input {
   opacity: 0;
   position: absolute;
   z-index: -1;
 }
 
-.image-upload-container img {
+#image-upload-container img {
   display: none;
   width: 100%;
   height: auto;
@@ -124,11 +131,7 @@ input[type="submit"]:hover {
     width: 100%;
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="date"],
-  input[type="password"] {
+  .form-field-input {
     width: 100%;
   }
 

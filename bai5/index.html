@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="question-container">
+      <div id="countdown">00:00</div>
+      <div class="content">
+        <div id="questions"></div>
+        <div class="group-btn">
+          <button id="previous-btn">Câu hỏi trước</button>
+          <div id="pagination"></div>
+          <button id="next-btn">Câu hỏi sau</button>
+        </div>
+      </div>
+      <div class="submit-btn">
+        <button onclick="submitQuiz()">Nộp bài</button>
+        <button onclick="resetQuiz()">Reset</button>
+      </div>
+      <div id="score"></div>
+    </div>
+    <div id="result"></div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

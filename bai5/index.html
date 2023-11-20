@@ -9,49 +9,17 @@
   <body>
     <div class="question-container">
       <div id="countdown">00:00</div>
-      <div id="questions">
-        <div class="question-item">
-          <h2>Câu hỏi 1</h2>
-          <p>Đây là câu hỏi 1?</p>
-          <label
-            ><input type="radio" name="question1" value="A" />A. Đáp án A</label
-          >
-          <label
-            ><input type="radio" name="question1" value="B" />B. Đáp án B</label
-          >
-          <label
-            ><input type="radio" name="question1" value="C" />C. Đáp án C</label
-          >
-        </div>
-        <div class="question-item">
-          <h2>Câu hỏi 2</h2>
-          <p>Đây là câu hỏi 2?</p>
-          <label
-            ><input type="radio" name="question2" value="A" />A. Đáp án A</label
-          >
-          <label
-            ><input type="radio" name="question2" value="B" />B. Đáp án B</label
-          >
-          <label
-            ><input type="radio" name="question2" value="C" />C. Đáp án C</label
-          >
-        </div>
-        <div class="question-item">
-          <h2>Câu hỏi 3</h2>
-          <p>Đây là câu hỏi 3?</p>
-          <label
-            ><input type="radio" name="question3" value="A" />A. Đáp án A</label
-          >
-          <label
-            ><input type="radio" name="question3" value="B" />B. Đáp án B</label
-          >
-          <label
-            ><input type="radio" name="question3" value="C" />C. Đáp án C</label
-          >
+      <div class="content">
+        <div id="questions"></div>
+        <div class="group-btn">
+          <button id="previous-btn">Câu hỏi trước</button>
+          <div id="pagination"></div>
+          <button id="next-btn">Câu hỏi sau</button>
         </div>
       </div>
       <div class="submit-btn">
         <button onclick="submitQuiz()">Nộp bài</button>
+        <button onclick="resetQuiz()">Reset</button>
       </div>
       <div id="score"></div>
     </div>
